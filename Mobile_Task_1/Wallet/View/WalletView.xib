@@ -23,6 +23,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WalletView" customModule="Mobile_Task_1" customModuleProvider="target">
             <connections>
+                <outlet property="currencyTableview" destination="PPu-kF-Hdm" id="4QV-mg-mTg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
