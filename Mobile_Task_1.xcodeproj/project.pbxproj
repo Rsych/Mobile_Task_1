@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		718E0FC6291F92EA005243DB /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718E0FC5291F92EA005243DB /* Wallet.swift */; };
+		718E0FC8291F96D5005243DB /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718E0FC7291F96D5005243DB /* Double.swift */; };
 		71C0F896291F4DB300FE1FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F895291F4DB300FE1FC8 /* AppDelegate.swift */; };
 		71C0F898291F4DB300FE1FC8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F897291F4DB300FE1FC8 /* SceneDelegate.swift */; };
 		71C0F89F291F4DB300FE1FC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71C0F89E291F4DB300FE1FC8 /* Assets.xcassets */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		718E0FC5291F92EA005243DB /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		718E0FC7291F96D5005243DB /* Double.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		71C0F892291F4DB300FE1FC8 /* Mobile_Task_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobile_Task_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71C0F895291F4DB300FE1FC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		71C0F897291F4DB300FE1FC8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			children = (
 				71C0F8DA291F7F3600FE1FC8 /* View */,
 				71C0F8D9291F7F3100FE1FC8 /* Cell */,
+				718E0FC5291F92EA005243DB /* Wallet.swift */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -209,6 +214,7 @@
 		71C0F8DE291F89BB00FE1FC8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				718E0FC7291F96D5005243DB /* Double.swift */,
 				71C0F8DC291F814A00FE1FC8 /* UITableViewCell+Extension.swift */,
 				71C0F8E0291F8AF700FE1FC8 /* UITextField+Extension.swift */,
 			);
@@ -368,9 +374,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				718E0FC6291F92EA005243DB /* Wallet.swift in Sources */,
 				71C0F8E4291F8EA900FE1FC8 /* NetworkManager.swift in Sources */,
 				71C0F8D7291F7F2D00FE1FC8 /* CurrencyCell.swift in Sources */,
 				71C0F8D4291F5AAC00FE1FC8 /* DesignableUITextField.swift in Sources */,
+				718E0FC8291F96D5005243DB /* Double.swift in Sources */,
 				71C0F8E8291F902200FE1FC8 /* OptionsConfig.swift in Sources */,
 				71C0F896291F4DB300FE1FC8 /* AppDelegate.swift in Sources */,
 				71C0F898291F4DB300FE1FC8 /* SceneDelegate.swift in Sources */,

@@ -12,7 +12,8 @@ class WalletView: UIViewController {
     @IBOutlet private weak var currencyTableview: UITableView!
 
     // MARK: - Privates
-    
+    private var dummy = Wallet.examples
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
@@ -45,7 +46,7 @@ extension WalletView: UITableViewDelegate {
 
 extension WalletView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return dummy.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,6 +62,7 @@ extension WalletView {
     private func createCurrencyCell(index: IndexPath) -> UITableViewCell {
         guard let cell = currencyTableview.dequeueReusableCell(withIdentifier: CurrencyCell.identifier, for: index) as? CurrencyCell else { return CurrencyCell() }
         cell.selectionStyle = .none
+        cell.configureCell(image: dummy[index.row].imageURL, name: dummy[index.row].name, coins: dummy[index.row].amountString, value: dummy[index.row].valueString)
         return cell
     }
 }
