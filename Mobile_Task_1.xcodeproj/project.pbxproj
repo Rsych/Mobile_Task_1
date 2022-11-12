@@ -23,6 +23,9 @@
 		71C0F8D8291F7F2D00FE1FC8 /* CurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71C0F8D6291F7F2D00FE1FC8 /* CurrencyCell.xib */; };
 		71C0F8DD291F814A00FE1FC8 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F8DC291F814A00FE1FC8 /* UITableViewCell+Extension.swift */; };
 		71C0F8E1291F8AF700FE1FC8 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F8E0291F8AF700FE1FC8 /* UITextField+Extension.swift */; };
+		71C0F8E4291F8EA900FE1FC8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F8E3291F8EA900FE1FC8 /* NetworkManager.swift */; };
+		71C0F8E6291F8EE400FE1FC8 /* CoinDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F8E5291F8EE400FE1FC8 /* CoinDetailService.swift */; };
+		71C0F8E8291F902200FE1FC8 /* OptionsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C0F8E7291F902200FE1FC8 /* OptionsConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		71C0F8D6291F7F2D00FE1FC8 /* CurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCell.xib; sourceTree = "<group>"; };
 		71C0F8DC291F814A00FE1FC8 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		71C0F8E0291F8AF700FE1FC8 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		71C0F8E3291F8EA900FE1FC8 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		71C0F8E5291F8EE400FE1FC8 /* CoinDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailService.swift; sourceTree = "<group>"; };
+		71C0F8E7291F902200FE1FC8 /* OptionsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,10 +218,21 @@
 		71C0F8DF291F89C700FE1FC8 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				71C0F8E3291F8EA900FE1FC8 /* NetworkManager.swift */,
+				71C0F8E2291F8E6E00FE1FC8 /* Services */,
 				71C0F8D3291F5AAC00FE1FC8 /* DesignableUITextField.swift */,
 				71C0F8DE291F89BB00FE1FC8 /* Extensions */,
+				71C0F8E7291F902200FE1FC8 /* OptionsConfig.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		71C0F8E2291F8E6E00FE1FC8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				71C0F8E5291F8EE400FE1FC8 /* CoinDetailService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,11 +368,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71C0F8E4291F8EA900FE1FC8 /* NetworkManager.swift in Sources */,
 				71C0F8D7291F7F2D00FE1FC8 /* CurrencyCell.swift in Sources */,
 				71C0F8D4291F5AAC00FE1FC8 /* DesignableUITextField.swift in Sources */,
+				71C0F8E8291F902200FE1FC8 /* OptionsConfig.swift in Sources */,
 				71C0F896291F4DB300FE1FC8 /* AppDelegate.swift in Sources */,
 				71C0F898291F4DB300FE1FC8 /* SceneDelegate.swift in Sources */,
 				71C0F8C7291F4E3700FE1FC8 /* WalletView.swift in Sources */,
+				71C0F8E6291F8EE400FE1FC8 /* CoinDetailService.swift in Sources */,
 				71C0F8E1291F8AF700FE1FC8 /* UITextField+Extension.swift in Sources */,
 				71C0F8D0291F585000FE1FC8 /* CurrencyView.swift in Sources */,
 				71C0F8DD291F814A00FE1FC8 /* UITableViewCell+Extension.swift in Sources */,
