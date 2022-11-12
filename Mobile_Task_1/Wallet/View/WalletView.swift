@@ -16,21 +16,28 @@ class WalletView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
         setupTableview()
     }
-    // MARK: - Functions
-    private func setupNavigation() {
-        navigationController?.isNavigationBarHidden = true
-        navigationController?.isToolbarHidden = true
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    // MARK: - Functions
     private func setupTableview() {
         currencyTableview.delegate = self
         currencyTableview.dataSource = self
         currencyTableview.register(UINib(nibName: CurrencyCell.identifier, bundle: nil), forCellReuseIdentifier: CurrencyCell.identifier)
     }
-    func routeToCurrency() {
+    func routeToCurrency(index: IndexPath) {
         let currencyView = CurrencyView(nibName: "CurrencyView", bundle: nil)
+        currencyView.title = dummy[index.row].name
         self.navigationController?.pushViewController(currencyView, animated: true)
         
     }
@@ -39,7 +46,7 @@ class WalletView: UIViewController {
 extension WalletView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        default: routeToCurrency()
+        default: routeToCurrency(index: indexPath)
         }
     }
 }

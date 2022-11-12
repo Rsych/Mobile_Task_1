@@ -22,8 +22,6 @@ class CurrencyView: UIViewController {
 // MARK: - Functions
     private func setupNavigation() {
         navigationController?.isNavigationBarHidden = false
-        self.title = "Bitcoin"
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .done, target: self, action: #selector(dismissScreen))
     }
 
