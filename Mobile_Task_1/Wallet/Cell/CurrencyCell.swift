@@ -15,7 +15,11 @@ class CurrencyCell: UITableViewCell {
     @IBOutlet weak var currencyAmount: UILabel!
     @IBOutlet weak var cashAmount: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+
+    func configureCell(image: String?, name: String?, coins: String?, value: String?) {
+        currencyImage.image = UIImage(named: image ?? "")
+        currencyTitle.text = name
+        currencyAmount.text = coins
+        cashAmount.text = value
     }
 }
