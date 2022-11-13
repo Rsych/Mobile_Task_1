@@ -13,13 +13,17 @@ class CurrencyView: UIViewController {
     @IBOutlet private weak var topTextfield: DesignableUITextField!
     @IBOutlet private weak var bottomTextfield: DesignableUITextField!
 
+    var vm: CurrencyViewModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
         setupTextFields()
         setupNotifications()
+        vm?.fetchCoin()
     }
-// MARK: - Functions
+
+    // MARK: - Functions
     private func setupNavigation() {
         navigationController?.isNavigationBarHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .done, target: self, action: #selector(dismissScreen))
@@ -27,6 +31,8 @@ class CurrencyView: UIViewController {
 
     func setupTextFields() {
         topTextfield.addDoneButtonOnKeyboard()
+        topTextfield.leftImage = UIImage(named: vm?.ticker ?? "")
+        topTextfield.rightText = vm?.ticker
         topTextfield.keyboardType = .decimalPad
         topTextfield.tag = 0
         topTextfield.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -43,11 +49,18 @@ class CurrencyView: UIViewController {
     }
 
     // MARK: - Action
+
     @objc func dismissScreen() {
         self.navigationController?.popViewController(animated: true)
     }
-    @objc func textFieldDidChange(_ textField: UITextField, text: String) {
-        debugPrint("***** \(textField.tag)")
+
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        guard let value = vm?.coin?.lastHP, let text = textField.text else { return }
+        if textField.tag == 0 {
+            bottomTextfield.text = text.isEmpty ? "" : String((Double(text) ?? 0) * value)
+        } else {
+            topTextfield.text = text.isEmpty ? "" : String((Double(text) ?? 0) / value)
+        }
     }
 
     // MARK: - Keyboard notifications

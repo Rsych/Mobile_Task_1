@@ -11,12 +11,15 @@ class WalletView: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var currencyTableview: UITableView!
 
+    @IBOutlet private weak var wholeNumberLabel: UILabel!
+    @IBOutlet private weak var fractionLabel: UILabel!
     // MARK: - Privates
-    private var dummy = Wallet.examples
+    private var vm: WalletViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableview()
+        vm = WalletViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,12 +40,14 @@ class WalletView: UIViewController {
     }
     func routeToCurrency(index: IndexPath) {
         let currencyView = CurrencyView(nibName: "CurrencyView", bundle: nil)
-        currencyView.title = dummy[index.row].name
+        let viewModel = CurrencyViewModel(ticker: vm?.dummy[index.row].ticker ?? "")
+        currencyView.vm = viewModel
+        currencyView.title = vm?.dummy[index.row].ticker
         self.navigationController?.pushViewController(currencyView, animated: true)
-        
     }
 }
 
+// MARK: - UITableViewDelegate
 extension WalletView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
@@ -50,10 +55,10 @@ extension WalletView: UITableViewDelegate {
         }
     }
 }
-
+// MARK: - UITableViewDataSource
 extension WalletView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dummy.count
+        return vm?.numOfRow() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +74,7 @@ extension WalletView {
     private func createCurrencyCell(index: IndexPath) -> UITableViewCell {
         guard let cell = currencyTableview.dequeueReusableCell(withIdentifier: CurrencyCell.identifier, for: index) as? CurrencyCell else { return CurrencyCell() }
         cell.selectionStyle = .none
-        cell.configureCell(image: dummy[index.row].imageURL, name: dummy[index.row].name, coins: dummy[index.row].amountString, value: dummy[index.row].valueString)
+        cell.configureCell(image: vm?.dummy[index.row].imageURL, name: vm?.dummy[index.row].name, coins: vm?.dummy[index.row].amountString, value: vm?.dummy[index.row].valueString)
         return cell
     }
 }

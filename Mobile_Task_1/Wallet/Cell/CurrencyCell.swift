@@ -16,8 +16,8 @@ class CurrencyCell: UITableViewCell {
     @IBOutlet weak var cashAmount: UILabel!
 
 
-    func configureCell(image: String, name: String, coins: String, value: String) {
-        currencyImage.image = UIImage(named: image)
+    func configureCell(image: String?, name: String?, coins: String?, value: String?) {
+        currencyImage.image = UIImage(named: image ?? "")
         currencyTitle.text = name
         currencyAmount.text = coins
         cashAmount.text = value

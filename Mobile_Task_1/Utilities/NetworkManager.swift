@@ -4,47 +4,36 @@
 //
 //  Created by Ryan J. W. Kim on 2022/01/19.
 //
-
 import Foundation
-import Combine
 
-class NetworkManager {
+class NetworkManager<T: Codable> {
     
-    enum NetworkingError: LocalizedError {
-        case badURLResponse(url: URL)
-        case unknown
-        
-        var errorDescription: String? {
-            switch self {
-            case .badURLResponse(url: let url):
-                return "[🔥] Bad response from URL. \(url)"
-            case .unknown:
-                return "[⚠️] Unknown error occurred."
+    enum NetworkError: Error {
+        case failed(error: Error)
+        case invalidResponse(response: URLResponse)
+        case emptyData
+    }
+    
+    func fetch(url: URL, completion: @escaping (Result<T?, NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                completion(.failure(.failed(error: error!)))
+                return
             }
-        }
-    }
-    
-    static func download(url: URL) -> AnyPublisher<Data, Error> {
-        return URLSession.shared.dataTaskPublisher(for: url)
-            .tryMap({ try handleURLResponse(output: $0, url: url) })
-            .retry(3)
-            .eraseToAnyPublisher()
-    }
-    
-    static func handleURLResponse(output: URLSession.DataTaskPublisher.Output, url: URL) throws -> Data {
-        guard let response = output.response as? HTTPURLResponse,
-              response.statusCode >= 200 && response.statusCode < 300 else {
-                  throw NetworkingError.badURLResponse(url: url)
-              }
-        return output.data
-    }
-    
-    static func handleCompletion(completion: Subscribers.Completion<Error>) {
-        switch completion {
-        case .finished:
-            break
-        case .failure(let error):
-            print(error.localizedDescription)
-        }
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(.failure(.invalidResponse(response: response!)))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(.emptyData))
+                return
+            }
+            
+            let json = try? JSONDecoder().decode(T.self, from: data)
+            completion(.success(json))
+            
+        }.resume()
     }
 }
