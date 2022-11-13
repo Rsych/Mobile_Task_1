@@ -20,7 +20,8 @@ class CurrencyView: UIViewController {
         setupNavigation()
         setupTextFields()
         setupNotifications()
-        vm?.fetchCoin()
+        prepareData()
+        self.hideKeyboardWhenTappedAround()
     }
 
     // MARK: - Functions
@@ -28,16 +29,20 @@ class CurrencyView: UIViewController {
         navigationController?.isNavigationBarHidden = false
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left"), style: .done, target: self, action: #selector(dismissScreen))
     }
+    
+    func prepareData() {
+        vm?.fetchCoin()
+    }
 
     func setupTextFields() {
-        topTextfield.addDoneButtonOnKeyboard()
+//        topTextfield.addDoneButtonOnKeyboard()
         topTextfield.leftImage = UIImage(named: vm?.ticker ?? "")
         topTextfield.rightText = vm?.ticker
         topTextfield.keyboardType = .decimalPad
         topTextfield.tag = 0
         topTextfield.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
-        bottomTextfield.addDoneButtonOnKeyboard()
+//        bottomTextfield.addDoneButtonOnKeyboard()
         bottomTextfield.keyboardType = .decimalPad
         bottomTextfield.tag = 1
         bottomTextfield.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -55,11 +60,11 @@ class CurrencyView: UIViewController {
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let value = vm?.coin?.lastHP, let text = textField.text else { return }
+        guard let text = textField.text else { return }
         if textField.tag == 0 {
-            bottomTextfield.text = text.isEmpty ? "" : String((Double(text) ?? 0) * value)
+            bottomTextfield.text = vm?.convertCurrency(text: text, isEmpty: text.isEmpty, isTop: true)
         } else {
-            topTextfield.text = text.isEmpty ? "" : String((Double(text) ?? 0) / value)
+            topTextfield.text = vm?.convertCurrency(text: text, isEmpty: text.isEmpty, isTop: false)
         }
     }
 

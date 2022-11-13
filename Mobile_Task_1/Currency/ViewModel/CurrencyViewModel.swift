@@ -26,4 +26,16 @@ class CurrencyViewModel {
             }
         }
     }
+    
+    func convertCurrency(text: String, isEmpty: Bool, isTop: Bool) -> String {
+        if isEmpty {
+            return ""
+        }
+
+        if isTop {
+            return String((Double(text) ?? 0) * (coin?.lastHP ?? 0))
+        } else {
+            return String((Double(text) ?? 0) / (coin?.lastHP ?? 0))
+        }
+    }
 }
